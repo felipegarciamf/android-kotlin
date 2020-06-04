@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.alura.financask.R
+import com.alura.financask.ui.adapter.ListaTransacoesAdapter
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 
 class ListaTransacoesAcitivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class ListaTransacoesAcitivity : AppCompatActivity() {
 
         val arrayAdapter = ArrayAdapter<Any>(this, android.R.layout.simple_list_item_1)
 
-        lista_transacoes_listview.adapter = arrayAdapter
+        lista_transacoes_listview.adapter = ListaTransacoesAdapter(transacoes, this)
     }
 
 }
