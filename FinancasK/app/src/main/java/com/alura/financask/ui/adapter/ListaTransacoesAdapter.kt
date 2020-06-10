@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.alura.financask.R
+import com.alura.financask.extension.formataParaBrasileiro
 import com.alura.financask.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
+
 
 class ListaTransacoesAdapter(
     transacoes: List<Transacao>,
@@ -24,11 +26,15 @@ class ListaTransacoesAdapter(
 
         val transacao = transacoes[position]
 
-        viewCriada.transacao_valor.setText(transacao.valor.toString())
 
+
+        viewCriada.transacao_valor.text = transacao.valor.toString()
+        viewCriada.transacao_categoria.text = transacao.categoria
+        viewCriada.transacao_data.text = transacao.data.formataParaBrasileiro()
 
         return viewCriada
     }
+
 
     override fun getItem(position: Int): Transacao {
         return transacoes[position]
@@ -41,6 +47,7 @@ class ListaTransacoesAdapter(
     override fun getCount(): Int {
         return transacoes.size
     }
+
 
 
 }
