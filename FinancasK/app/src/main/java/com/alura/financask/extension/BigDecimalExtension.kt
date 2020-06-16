@@ -1,14 +1,12 @@
 package com.alura.financask.extension
 
 import java.math.BigDecimal
+import java.text.DecimalFormat
 import java.util.Locale
 
 fun BigDecimal.formataParaBrasileiro(): String {
-    val formatoBrasileiro = java.text.DecimalFormat
+    val formatoBrasileiro = DecimalFormat
         .getCurrencyInstance(Locale("pt", "br"))
-
-    val valor = formatoBrasileiro
         .format(this).replace("R$", "R$ ")
-
-    return valor;
+    return formatoBrasileiro;
 }
