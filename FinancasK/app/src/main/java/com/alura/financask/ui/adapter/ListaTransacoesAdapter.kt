@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import androidx.core.content.ContextCompat
 import com.alura.financask.R
 import com.alura.financask.extension.formataParaBrasileiro
+import com.alura.financask.extension.limitaEmAte
 import com.alura.financask.model.Tipo
 import com.alura.financask.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
@@ -21,6 +22,8 @@ class ListaTransacoesAdapter(
     private val transacoes = transacoes
     private val context = context
 
+    private val limiteDaCategoria = 14
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val viewCriada = LayoutInflater.from(context)
@@ -29,13 +32,23 @@ class ListaTransacoesAdapter(
         val transacao = transacoes[position]
 
 
-        if(transacao.tipo == Tipo.RECEITA){
-            viewCriada.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.receita))
+        if (transacao.tipo == Tipo.RECEITA) {
+            viewCriada.transacao_valor.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.receita
+                )
+            )
         } else {
-            viewCriada.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.despesa))
+            viewCriada.transacao_valor.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.despesa
+                )
+            )
         }
 
-        if (transacao.tipo == Tipo.RECEITA){
+        if (transacao.tipo == Tipo.RECEITA) {
             viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_receita)
         } else {
             viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_despesa)
@@ -43,7 +56,7 @@ class ListaTransacoesAdapter(
 
 
         viewCriada.transacao_valor.text = transacao.valor.formataParaBrasileiro()
-        viewCriada.transacao_categoria.text = transacao.categoria
+        viewCriada.transacao_categoria.text = transacao.categoria?.limitaEmAte(limiteDaCategoria)
         viewCriada.transacao_data.text = transacao.data.formataParaBrasileiro()
 
         return viewCriada

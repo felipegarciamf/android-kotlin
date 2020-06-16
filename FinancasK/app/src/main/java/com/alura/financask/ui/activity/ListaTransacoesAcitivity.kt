@@ -22,7 +22,7 @@ class ListaTransacoesAcitivity : AppCompatActivity() {
             ),
             Transacao(
                 valor = BigDecimal(20),
-                categoria = "Economia",
+                categoria = "Economia Do DOidao",
                 tipo = Tipo.RECEITA
             ),
             Transacao(
